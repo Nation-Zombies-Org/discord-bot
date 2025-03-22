@@ -14,6 +14,9 @@ from discord.ext import tasks, commands
 from dotenv import load_dotenv
 import os
 
+from flask import Flask
+from threading import Thread
+
 load_dotenv()
 
 TOKEN = os.getenv('DISCORD_BOT_TOKEN')
@@ -92,3 +95,15 @@ async def on_ready():
     send_to_discord.start()
 
 bot.run(TOKEN)
+
+app = Flask('')
+
+@app.route('/')
+def home():
+    return "Bot is running"
+
+def run():
+    app.run(host='0.0.0.0', port=8080)
+
+t = Thread(target=run)
+t.start()
