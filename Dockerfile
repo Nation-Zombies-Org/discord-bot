@@ -1,14 +1,14 @@
-# Use a imagem base do Python
-FROM python:3.11-slim
+# Uses the official Python image
+FROM python:3.12-slim
 
-# Defina o diretório de trabalho
+# Defines the work directory inside the container
 WORKDIR /src
 
-# Copie os arquivos do projeto para o contêiner
+# Copy the project files into the container
 COPY . .
 
-# Instale as dependências
+# Install Bot Dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Comando para executar o bot
+# Command to run the bot
 CMD ["python", "src/bot.py"]
